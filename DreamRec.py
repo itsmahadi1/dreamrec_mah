@@ -446,8 +446,10 @@ if __name__ == '__main__':
     os.environ["CUDA_VISIBLE_DEVICES"] = str(args.cuda)
 
     data_directory = './data/' + args.data
-    data_statis = pd.read_pickle(
-        os.path.join(data_directory, 'data_statis.df'))  # read data statistics, includeing seq_size and item_num
+    path_stat = os.path.join(data_directory, 'data_statis.df')
+    print(">>> Loading data_statis from:", os.path.abspath(path_stat))
+    data_statis = pd.read_pickle(path_stat)
+  # read data statistics, includeing seq_size and item_num
     seq_size = data_statis['seq_size'][0]  # the length of history to define the seq
     item_num = data_statis['item_num'][0]  # total number of items
     topk=[10, 20, 50]
